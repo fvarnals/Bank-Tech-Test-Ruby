@@ -19,6 +19,7 @@ class Statement
   end
 
   def withdraw(amount)
+    credit(amount)
     return "#{'%.2f' % amount}"
   end
 end
