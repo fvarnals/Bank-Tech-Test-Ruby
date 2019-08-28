@@ -10,7 +10,7 @@ class Statement
     'date || credit || debit || balance'
   end
 
-  def deposit
+  def debit(amount = 0.00)
   end
 
   def credit(amount = 0.00)
