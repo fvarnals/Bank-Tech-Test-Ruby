@@ -24,6 +24,7 @@ class Statement
   end
 
   def deposit(amount)
+    debit(amount)
     return "#{'%.2f' % amount}"
   end
 end
