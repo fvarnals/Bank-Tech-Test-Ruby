@@ -1,11 +1,13 @@
 class Statement
 
-  def headers
-    'date || credit || debit || balance'
+  attr_reader :balance
+
+  def initialize(balance=0.00)
+    @balance = balance
   end
 
-  def balance
-    1.00
+  def headers
+    'date || credit || debit || balance'
   end
 
   def deposit
