@@ -15,8 +15,9 @@ describe Statement do
       expect{subject.debit(1.00)}.not_to raise_error
     end
     it "should increase balance by 9.99 when 9.99 is debited" do
+      initial_balance = subject.balance
       subject.debit(9.99)
-      expect(subject.balance).to eq(9.99)
+      expect(subject.balance).to eq(initial_balance + 9.99)
     end
   end
   describe '#credit' do
@@ -25,6 +26,11 @@ describe Statement do
     end
     it "should accept a float as an argument" do
       expect{subject.credit(1.00)}.not_to raise_error
+    end
+    it "should decrease balance by 9.99 when 9.99 is credited" do
+      p initial_balance = subject.balance
+      subject.credit(9.99)
+      expect(subject.balance).to eq(initial_balance - 9.99)
     end
   end
 end

@@ -15,5 +15,6 @@ class Statement
   end
 
   def credit(amount = 0.00)
+    @balance -= amount
   end
 end
