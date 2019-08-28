@@ -20,6 +20,7 @@ describe Statement do
       expect(subject.balance).to eq(initial_balance + 9.99)
     end
   end
+
   describe '#credit' do
     it "should respond to #credit" do
       expect(subject).to respond_to(:credit)
@@ -31,6 +32,11 @@ describe Statement do
       p initial_balance = subject.balance
       subject.credit(9.99)
       expect(subject.balance).to eq(initial_balance - 9.99)
+    end
+  end
+  describe '#withdrawal' do
+    it 'should return the amount withdrawn as a string float' do
+      expect(subject.withdraw(10.00)).to eq('10.00')
     end
   end
 end

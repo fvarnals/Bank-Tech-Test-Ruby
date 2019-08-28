@@ -17,4 +17,8 @@ class Statement
   def credit(amount = 0.00)
     @balance -= amount
   end
+
+  def withdraw(amount)
+    return "#{'%.2f' % amount}"
+  end
 end
