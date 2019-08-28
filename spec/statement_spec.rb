@@ -8,11 +8,14 @@ describe Statement do
     expect(subject.balance).to be_a(Float)
   end
   it "should respond to #deposit" do
-    expect(subject).to respond_to(:deposit) do
-    end
+    expect(subject).to respond_to(:deposit)
   end
-  it "should respond to #credit" do
-    expect(subject).to respond_to(:credit) do
+  describe '#credit' do
+    it "should respond to #credit" do
+      expect(subject).to respond_to(:credit)
+    end
+    it "should accept a float as an argument" do
+      expect{subject.credit(1.00)}.not_to raise_error
     end
   end
 end

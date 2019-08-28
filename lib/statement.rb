@@ -13,6 +13,6 @@ class Statement
   def deposit
   end
 
-  def credit
+  def credit(amount = 0.00)
   end
 end
