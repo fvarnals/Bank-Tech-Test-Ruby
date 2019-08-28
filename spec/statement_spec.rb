@@ -44,4 +44,9 @@ describe Statement do
       expect(subject.balance).to eq(initial_balance - 9.99)
     end
   end
+  describe '#deposit' do
+    it 'should return the amount deposited as a string float' do
+      expect(subject.withdraw(10.00)).to eq('10.00')
+    end
+  end
 end

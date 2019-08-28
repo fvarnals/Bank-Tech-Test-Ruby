@@ -22,4 +22,8 @@ class Statement
     credit(amount)
     return "#{'%.2f' % amount}"
   end
+
+  def deposit(amount)
+    return "#{'%.2f' % amount}"
+  end
 end
