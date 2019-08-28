@@ -11,6 +11,7 @@ class Statement
   end
 
   def debit(amount = 0.00)
+    @balance += amount
   end
 
   def credit(amount = 0.00)
