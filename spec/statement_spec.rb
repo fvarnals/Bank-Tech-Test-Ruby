@@ -7,8 +7,12 @@ describe Statement do
   it "should show a float balance with two decimal places" do
     expect(subject.balance).to be_a(Float)
   end
-  it "should allow user to deposit money" do
+  it "should respond to #deposit" do
     expect(subject).to respond_to(:deposit) do
+    end
+  end
+  it "should respond to #credit" do
+    expect(subject).to respond_to(:credit) do
     end
   end
 end

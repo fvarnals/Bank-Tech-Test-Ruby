@@ -10,4 +10,7 @@ class Statement
 
   def deposit
   end
+
+  def credit
+  end
 end
