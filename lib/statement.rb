@@ -7,4 +7,7 @@ class Statement
   def balance
     1.00
   end
+
+  def deposit
+  end
 end
