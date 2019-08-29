@@ -12,13 +12,17 @@ describe Account do
     expect(account.balance).to be_a(Float)
   end
   describe '#withdraw' do
-    # it 'should return the amount withdrawn as a string float' do
-    #   expect(subject.withdraw(10.00)).to eq('10.00')
-    # end
     it "should decrease balance by 9.99 when 9.99 is withdrawn" do
       initial_balance = subject.balance
       subject.withdraw(9.99)
       expect(subject.balance).to eq(initial_balance - 9.99)
+    end
+  end
+  describe '#deposit' do
+    it "should increase balance by 9.99 when 9.99 is deposited" do
+      initial_balance = subject.balance
+      subject.deposit(9.99)
+      expect(subject.balance).to eq(initial_balance + 9.99)
     end
   end
 end

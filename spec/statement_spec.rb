@@ -31,14 +31,4 @@ describe Statement do
       expect(subject.balance).to eq(initial_balance - 9.99)
     end
   end
-  describe '#deposit' do
-    it 'should return the amount deposited as a string float' do
-      expect(subject.deposit(10.00)).to eq('10.00')
-    end
-    it "should increase balance by 9.99 when 9.99 is deposited" do
-      initial_balance = subject.balance
-      subject.deposit(9.99)
-      expect(subject.balance).to eq(initial_balance + 9.99)
-    end
-  end
 end
