@@ -10,11 +10,11 @@ class Statement
     'date || credit || debit || balance'
   end
 
-  def debit(amount = 0.00)
-    @balance += amount
+  def debit_amount(amount = 0.00)
+    return "#{'%.2f' % amount}"
   end
 
-  def credit(amount = 0.00)
+  def credit_amount(amount = 0.00)
     return "#{'%.2f' % amount}"
   end
 
