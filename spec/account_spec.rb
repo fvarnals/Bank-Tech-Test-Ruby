@@ -25,4 +25,9 @@ describe Account do
       expect(subject.balance).to eq(initial_balance + 9.99)
     end
   end
+  describe 'transactions_history' do
+    it 'stores the history of transactions' do
+      expect(subject).to respond_to(:transaction_history)
+    end
+  end
 end
