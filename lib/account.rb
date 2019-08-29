@@ -5,4 +5,7 @@ class Account
     @balance = balance.to_f
   end
 
+  def withdraw(amount)
+    @balance -= amount
+  end
 end
