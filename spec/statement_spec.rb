@@ -26,4 +26,9 @@ describe Statement do
       expect(subject.credit_amount(1.0)).to eq("1.00")
     end
   end
+  describe '#balance_after_transaction' do
+    it 'returns the balance as a float string, following transaction' do
+      expect(subject.balance_after_transaction(2)).to eq("2.00")
+    end
+  end
 end

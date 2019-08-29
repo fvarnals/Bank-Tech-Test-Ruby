@@ -10,6 +10,10 @@ class Statement
     'date || credit || debit || balance'
   end
 
+  def balance_after_transaction(balance)
+    return "#{'%.2f' % balance}"
+  end
+
   def debit_amount(amount = 0.00)
     return "#{'%.2f' % amount}"
   end
