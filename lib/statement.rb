@@ -1,9 +1,10 @@
 class Statement
 
-  attr_reader :balance
+  attr_reader :balance, :transaction_history
 
   def initialize(balance=0.00)
     @balance = balance
+    @transaction_history = []
   end
 
   def headers
@@ -22,4 +23,7 @@ class Statement
     return "#{'%.2f' % amount}"
   end
 
+  def transaction_date(date)
+    return "#{date}"
+  end
 end

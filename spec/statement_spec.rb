@@ -31,4 +31,14 @@ describe Statement do
       expect(subject.balance_after_transaction(2)).to eq("2.00")
     end
   end
+  describe '#transaction_date' do
+    it 'returns the date for a transaction' do
+      expect(subject.transaction_date('27/01/2014')).to eq('27/01/2014')
+    end
+  end
+  describe 'record transactions' do
+    it 'stores the history of transactions' do
+      expect(subject).to respond_to(:transaction_history)
+    end
+  end
 end
