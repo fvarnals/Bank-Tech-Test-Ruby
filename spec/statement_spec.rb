@@ -4,54 +4,42 @@ describe Statement do
   it "should have correct headers" do
     expect(subject.headers).to eq('date || credit || debit || balance')
   end
-  # it "should show a float balance with two decimal places" do
-  #   expect(subject.balance).to be_a(Float)
-  # end
-  describe '#debit' do
-    it "should respond to #debit" do
-      expect(subject).to respond_to(:debit)
-    end
-    it "should accept a float as an argument" do
-      expect{subject.debit(1.00)}.not_to raise_error
-    end
-    it "should increase balance by 9.99 when 9.99 is debited" do
-      initial_balance = subject.balance
-      subject.debit(9.99)
-      expect(subject.balance).to eq(initial_balance + 9.99)
-    end
-  end
 
-  describe '#credit' do
-    it "should respond to #credit" do
-      expect(subject).to respond_to(:credit)
+  describe '#debit_amount' do
+    it "should respond to #debit_amount" do
+      expect(subject).to respond_to(:debit_amount)
     end
     it "should accept a float as an argument" do
-      expect{subject.credit(1.00)}.not_to raise_error
+      expect{subject.debit_amount(1.00)}.not_to raise_error
     end
-    it "should decrease balance by 9.99 when 9.99 is credited" do
-      initial_balance = subject.balance
-      subject.credit(9.99)
-      expect(subject.balance).to eq(initial_balance - 9.99)
+    it "should return amount debited as string" do
+      expect(subject.debit_amount(1.0)).to eq("1.00")
     end
   end
-  describe '#withdrawal' do
-    it 'should return the amount withdrawn as a string float' do
-      expect(subject.withdraw(10.00)).to eq('10.00')
+  describe '#credit_amount' do
+    it "should respond to #credit" do
+      expect(subject).to respond_to(:credit_amount)
     end
-    it "should decrease balance by 9.99 when 9.99 is withdrawn" do
-      initial_balance = subject.balance
-      subject.withdraw(9.99)
-      expect(subject.balance).to eq(initial_balance - 9.99)
+    it "should accept a float as an argument" do
+      expect{subject.credit_amount(1.00)}.not_to raise_error
+    end
+    it "should return amount credited as string" do
+      expect(subject.credit_amount(1.0)).to eq("1.00")
     end
   end
-  describe '#deposit' do
-    it 'should return the amount deposited as a string float' do
-      expect(subject.deposit(10.00)).to eq('10.00')
+  describe '#balance_after_transaction' do
+    it 'returns the balance as a float string, following transaction' do
+      expect(subject.balance_after_transaction(2)).to eq("2.00")
     end
-    it "should increase balance by 9.99 when 9.99 is deposited" do
-      initial_balance = subject.balance
-      subject.deposit(9.99)
-      expect(subject.balance).to eq(initial_balance + 9.99)
+  end
+  describe '#transaction_date' do
+    it 'returns the date for a transaction' do
+      expect(subject.transaction_date('27/01/2014')).to eq('27/01/2014')
+    end
+  end
+  describe 'record transactions' do
+    it 'stores the history of transactions' do
+      expect(subject).to respond_to(:transaction_history)
     end
   end
   describe '#print_statement' do

@@ -1,31 +1,30 @@
 class Statement
 
-  attr_reader :balance
+  attr_reader :balance, :transaction_history
 
   def initialize(balance=0.00)
     @balance = balance
+    @transaction_history = []
   end
 
   def headers
     'date || credit || debit || balance'
   end
 
-  def debit(amount = 0.00)
-    @balance += amount
+  def balance_after_transaction(balance)
+    return "#{'%.2f' % balance}"
   end
 
-  def credit(amount = 0.00)
-    @balance -= amount
-  end
-
-  def withdraw(amount)
-    credit(amount)
+  def debit_amount(amount = 0.00)
     return "#{'%.2f' % amount}"
   end
 
-  def deposit(amount)
-    debit(amount)
+  def credit_amount(amount = 0.00)
     return "#{'%.2f' % amount}"
+  end
+
+  def transaction_date(date)
+    return "#{date}"
   end
 
   def print_statement
