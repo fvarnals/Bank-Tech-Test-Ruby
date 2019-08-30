@@ -1,4 +1,5 @@
 class Account
+
   attr_reader :balance, :transaction_history
 
   def initialize(balance = 0.00)
@@ -12,5 +13,6 @@ class Account
 
   def deposit(amount)
     @balance += amount
+
   end
 end
