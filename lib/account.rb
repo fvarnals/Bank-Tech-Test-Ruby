@@ -13,7 +13,7 @@ class Account
     @balance -= amount
   end
 
-  def deposit(amount)
+  def deposit(amount, date = Date.today.to_s)
     @balance += amount
   end
 end
