@@ -42,17 +42,23 @@ describe Account do
     it 'should show a withdrawl of 100 on 01/01/01, with current balance, when this transaction is made' do
       account = Account.new(100)
       account.withdraw(100, "01/01/1901")
-      expect(account.transaction_history).to eq({"01/01/1901": ["withdrawl", 100.0, 0.0]})
+      expect(account.transaction_history).to eq({"01/01/1901": [["withdrawl", 100.0, 0.0]]})
     end
     it 'should show a withdrawl of 200 on 02/02/02, with current balance, when this transaction is made' do
       account = Account.new(300)
       account.withdraw(200, "02/02/1902")
-      expect(account.transaction_history).to eq({"02/02/1902": ["withdrawl", 200.0, 100.0]})
+      expect(account.transaction_history).to eq({"02/02/1902": [["withdrawl", 200.0, 100.0]]})
     end
     it 'should show a deposit of 100 on 01/01/01, with current balance, when this transaction is made' do
       account = Account.new(100)
       account.deposit(100, "01/01/1901")
-      expect(account.transaction_history).to eq({"01/01/1901": ["withdrawl", 100.0, 200.0]})
+      expect(account.transaction_history).to eq({"01/01/1901": [["deposit", 100.0, 200.0]]})
+    end
+    it 'should add a new transaction to same date, when multiple transactions are made on same day' do
+      account = Account.new(200)
+      account.withdraw(100, "01/01/1901")
+      account.deposit(50, "01/01/1901")
+      expect(account.transaction_history).to eq({"01/01/1901": [["withdrawl", 100.0, 100.0],["deposit", 50.0, 150.0]]})
     end
   end
 
