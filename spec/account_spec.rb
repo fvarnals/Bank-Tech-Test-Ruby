@@ -18,6 +18,9 @@ describe Account do
       subject.withdraw(9.99)
       expect(subject.balance).to eq(initial_balance - 9.99)
     end
+    it 'withdraw should accept a date as an argument' do
+      expect{subject.withdraw(9.99, "01/01/01")}.not_to raise_error
+    end
   end
   describe '#deposit' do
     it "should increase balance by 9.99 when 9.99 is deposited" do
