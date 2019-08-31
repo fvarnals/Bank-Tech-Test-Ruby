@@ -49,6 +49,11 @@ describe Account do
       account.withdraw(200, "02/02/1902")
       expect(account.transaction_history).to eq({"02/02/1902": ["withdrawl", 200.0, 100.0]})
     end
+    it 'should show a deposit of 100 on 01/01/01, with current balance, when this transaction is made' do
+      account = Account.new(100)
+      account.deposit(100, "01/01/1901")
+      expect(account.transaction_history).to eq({"01/01/1901": ["withdrawl", 100.0, 200.0]})
+    end
   end
 
 end

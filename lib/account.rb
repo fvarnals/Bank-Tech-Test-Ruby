@@ -16,5 +16,6 @@ class Account
 
   def deposit(amount, date = Date.today.to_s)
     @balance += amount
+    @transaction_history[date.to_sym] = ["withdrawl", amount.to_f, @balance]
   end
 end
