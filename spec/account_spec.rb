@@ -39,6 +39,11 @@ describe Account do
     it 'should be empty when no transactions have been made' do
       expect(account.transaction_history).to be_empty
     end
+    it 'should show a withdrawl of 100 on 01/01/01, with current balance, when this transaction is made' do
+      account = Account.new(100)
+      account.withdraw(100, "01/01/01")
+      expect(account.transaction_history).to eq({"01/01/01": ["withdrawl", 100, 0]})
+    end
   end
 
 end
