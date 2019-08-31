@@ -36,6 +36,9 @@ describe Account do
     it 'stores the history of transactions' do
       expect(account).to respond_to(:transaction_history)
     end
+    it 'should be empty when no transactions have been made' do
+      expect(account.transaction_history).to be_empty
+    end
   end
 
 end
