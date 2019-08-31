@@ -11,7 +11,7 @@ class Account
 
   def withdraw(amount, date = Date.today.to_s)
     @balance -= amount
-    @transaction_history[:"01/01/01"] = ["withdrawl", 100, 0]
+    @transaction_history[date.to_sym] = ["withdrawl", amount.to_f, @balance]
   end
 
   def deposit(amount, date = Date.today.to_s)
