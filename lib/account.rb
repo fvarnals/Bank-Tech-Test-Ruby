@@ -28,6 +28,7 @@ class Account
     else
       @transaction_history[date.to_sym] = [["deposit", amount.to_f, @balance]]
     end
+    Transaction.new('deposit', @balance, amount, date)
   end
 
 end

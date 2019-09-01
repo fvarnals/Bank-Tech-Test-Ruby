@@ -35,6 +35,9 @@ describe Account do
     it 'should accept a date as an argument' do
       expect{ account.deposit(9.99, "01/01/01") }.not_to raise_error
     end
+    it 'creates a new transaction object' do
+      expect(account.deposit(9.99)).to be_an_instance_of(Transaction)
+    end
   end
   describe 'transactions_history' do
     it 'stores the history of transactions' do
