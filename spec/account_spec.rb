@@ -2,6 +2,7 @@ require 'account'
 
 describe Account do
   subject(:account) { described_class.new }
+  subject(:date_today) { Date.today.to_s }
   it "is instance of the Account class" do
     expect(account).to be_an_instance_of(Account)
   end
@@ -39,20 +40,20 @@ describe Account do
     it 'should be empty when no transactions have been made' do
       expect(account.transaction_history).to be_empty
     end
-    it 'should show a withdrawl of 100 on 01/01/01, with current balance, when this transaction is made' do
+    it 'should show a withdrawl of 100 made today, with current balance, when this transaction is made' do
       account = Account.new(100)
-      account.withdraw(100, "01/01/1901")
-      expect(account.transaction_history).to eq({"1901-01-01": [["withdrawl", 100.0, 0.0]]})
+      account.withdraw(100)
+      expect(account.transaction_history).to eq({"#{date_today}": [["withdrawl", 100.0, 0.0]]})
     end
-    it 'should show a withdrawl of 200 on 02/02/02, with current balance, when this transaction is made' do
+    it 'should show a withdrawl of 200 made today, with current balance, when this transaction is made' do
       account = Account.new(300)
-      account.withdraw(200, "02/02/1902")
-      expect(account.transaction_history).to eq({"1902-02-02": [["withdrawl", 200.0, 100.0]]})
+      account.withdraw(200)
+      expect(account.transaction_history).to eq({"#{date_today}": [["withdrawl", 200.0, 100.0]]})
     end
-    it 'should show a deposit of 100 on 01/01/01, with current balance, when this transaction is made' do
+    it 'should show a deposit of 100 made today, with current balance, when this transaction is made' do
       account = Account.new(100)
-      account.deposit(100, "01/01/1901")
-      expect(account.transaction_history).to eq({"1901-01-01": [["deposit", 100.0, 200.0]]})
+      account.deposit(100)
+      expect(account.transaction_history).to eq({"#{date_today}": [["deposit", 100.0, 200.0]]})
     end
     it 'should add a new transaction to same date, when multiple transactions are made on same day' do
       account = Account.new(200)
