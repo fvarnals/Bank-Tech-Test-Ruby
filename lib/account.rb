@@ -11,6 +11,7 @@ class Account
 
   def withdraw(amount, date = Date.today.to_s)
     @balance -= amount
+    date = Date.parse(date).strftime("%Y-%m-%d")
     if @transaction_history.key?(date.to_sym)
       @transaction_history[date.to_sym].push(["withdrawl", amount.to_f, @balance])
     else
@@ -20,6 +21,7 @@ class Account
 
   def deposit(amount, date = Date.today.to_s)
     @balance += amount
+    date = Date.parse(date).strftime("%Y-%m-%d")
     if @transaction_history.key?(date.to_sym)
       @transaction_history[date.to_sym].push(["deposit", amount.to_f, @balance])
     else
