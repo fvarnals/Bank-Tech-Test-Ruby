@@ -14,11 +14,15 @@ class Account
     amount = reformat_to_2dp_string(amount)
     balance = reformat_to_2dp_string(@balance)
     date = reformat_date(date)
-    transaction = Transaction.new(type, balance, amount, date)
-    transaction_history.push(transaction)
+    record_transaction(type, balance, amount, date)
   end
 
   private
+
+  def record_transaction(type, balance, amount, date)
+    transaction = Transaction.new(type, balance, amount, date)
+    transaction_history.push(transaction)
+  end
 
   def reformat_to_2dp_string(data)
     "#{'%.2f' % data}"
