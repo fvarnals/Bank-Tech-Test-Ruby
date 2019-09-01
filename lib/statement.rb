@@ -18,13 +18,11 @@ class Statement
 
   def format_transactions(transaction_history)
     transactions = ""
-    transaction_history.reverse_each do |date, activities|
-      activities.reverse_each do |transaction|
-        if transaction[0] == "deposit"
-          transactions += "\n#{date} || #{transaction[1]} || || #{transaction[2]}"
-        else transaction[0] == "credit"
-          transactions += "\n#{date} || || #{transaction[1]} || #{transaction[2]}"
-        end
+    transaction_history.reverse_each do |transaction|
+      if transaction.type == "deposit"
+        transactions += "\n#{transaction.date} || #{transaction.amount} || || #{transaction.account_balance}"
+      else transaction.type == "credit"
+        transactions += "\n#{transaction.date} || || #{transaction.amount} || #{transaction.account_balance}"
       end
     end
     return transactions
