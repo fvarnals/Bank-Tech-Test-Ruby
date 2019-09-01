@@ -17,6 +17,7 @@ class Account
     else
       @transaction_history[date.to_sym] = [["withdrawl", amount.to_f, @balance]]
     end
+    Transaction.new('withdrawl', @balance, amount, date)
   end
 
   def deposit(amount, date = Date.today.to_s)

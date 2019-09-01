@@ -22,6 +22,9 @@ describe Account do
     it 'should accept a date as an argument' do
       expect{account.withdraw(9.99, "01/01/01")}.not_to raise_error
     end
+    it 'creates a new transaction object' do
+      expect(account.withdraw(9.99)).to be_an_instance_of(Transaction)
+    end
   end
   describe '#deposit' do
     it "should increase balance by 9.99 when 9.99 is deposited" do
