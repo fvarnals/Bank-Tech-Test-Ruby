@@ -98,3 +98,9 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+require 'datetime_helper/rspec'
+
+RSpec.configure do |config|
+  config.include DatetimeHelper::Matchers
+end

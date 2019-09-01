@@ -60,6 +60,11 @@ describe Account do
       account.deposit(50, "01/01/1901")
       expect(account.transaction_history).to eq({"01/01/1901": [["withdrawl", 100.0, 100.0],["deposit", 50.0, 150.0]]})
     end
+    it 'should record dates in ISO format (YYYY-MM-DD)' do
+      date = Date.today.to_s
+      account.withdraw(100)
+      expect(account.transaction_history.keys[0]).to be_an_iso_formatted_date
+    end
   end
 
 end
