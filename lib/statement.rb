@@ -36,10 +36,10 @@ class Statement
     transaction_history.each do |date, activities|
       activities = activities.reverse_each.to_a
       activities.each do |transaction|
-        if transaction[0] == "withdrawl"
-          transactions += "\n#{reformat_date(date)} || #{credit_amount(transaction[1])} || || #{balance_after_transaction(transaction[2])}"
-        else transaction[0] == "deposit"
-          transactions += "\n#{reformat_date(date)} || || #{debit_amount(transaction[1])} || #{balance_after_transaction(transaction[2])}"
+        if transaction[0] == "deposit"
+          transactions += "\n#{reformat_date(date)} || #{debit_amount(transaction[1])} || || #{balance_after_transaction(transaction[2])}"
+        else transaction[0] == "credit"
+          transactions += "\n#{reformat_date(date)} || || #{credit_amount(transaction[1])} || #{balance_after_transaction(transaction[2])}"
         end
       end
     end
