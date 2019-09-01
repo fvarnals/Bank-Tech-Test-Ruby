@@ -2,7 +2,7 @@ require 'account'
 
 describe Account do
   subject(:account) { described_class.new }
-  subject(:date_today) { Date.today.to_s }
+  subject(:date_today) { Date.parse(Date.today.to_s).strftime("%d/%m/%Y") }
   it "is instance of the Account class" do
     expect(account).to be_an_instance_of(Account)
   end
@@ -49,36 +49,31 @@ describe Account do
     it 'should show a withdrawl of 100 made today, with current balance, when this transaction is made' do
       account = Account.new(100)
       account.withdraw(100)
-      expect(account.transaction_history).to eq({"#{date_today}": [["withdrawl", 100.0, 0.0]]})
+      expect(account.transaction_history).to eq({"#{date_today}": [["withdrawl", "100.00", "0.00"]]})
     end
     it 'should show a withdrawl of 200 made today, with current balance, when this transaction is made' do
       account = Account.new(300)
       account.withdraw(200)
-      expect(account.transaction_history).to eq({"#{date_today}": [["withdrawl", 200.0, 100.0]]})
+      expect(account.transaction_history).to eq({"#{date_today}": [["withdrawl", "200.00", "100.00"]]})
     end
     it 'should show a deposit of 100 made today, with current balance, when this transaction is made' do
       account = Account.new(100)
       account.deposit(100)
-      expect(account.transaction_history).to eq({"#{date_today}": [["deposit", 100.0, 200.0]]})
+      expect(account.transaction_history).to eq({"#{date_today}": [["deposit", "100.00", "200.00"]]})
     end
     it 'should add a new transaction to same date, when multiple transactions are made on same day' do
       account = Account.new(200)
       account.withdraw(100, "01/01/1901")
       account.deposit(50, "01/01/1901")
-      expect(account.transaction_history).to eq({"1901-01-01": [["withdrawl", 100.0, 100.0],["deposit", 50.0, 150.0]]})
+      expect(account.transaction_history).to eq({"01/01/1901": [["withdrawl", "100.00", "100.00"],["deposit", "50.00", "150.00"]]})
     end
-    it 'should record today''s date for a transaction when no date is passed as an argument' do
-      date_today = Date.today.to_s
+    it 'should record dates in DD/MM/YYYY format when no date argument is given' do
       account.withdraw(100)
       expect(account.transaction_history.keys[0]).to eq(date_today.to_sym)
     end
-    it 'should record dates in ISO format (YYYY-MM-DD) when no date argument is given' do
-      account.withdraw(100)
-      expect(account.transaction_history.keys[0]).to be_an_iso_formatted_date
-    end
-    it 'should record dates in ISO format even when given DD/MM/YYYY' do
-      account.withdraw(100, '01/01/1901')
-      expect(account.transaction_history.keys[0]).to be_an_iso_formatted_date
+    it 'should record dates in format DD/MM/YYYY' do
+      account.withdraw(100, '2019-09-01')
+      expect(account.transaction_history.keys[0]).to eq(:'01/09/2019')
     end
   end
 
