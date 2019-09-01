@@ -29,13 +29,10 @@ class Statement
   end
 
   def print_statement(account)
-    # "date || credit || debit || balance\n14/01/2012 || || 500.00 || 2500.00\n13/01/2012 || 2000.00 || || 3000.00\n10/01/2012 || 1000.00 || || 1000.00"
     transaction_history = account.transaction_history
     transactions = ""
-    transaction_history = transaction_history.reverse_each.to_h
-    transaction_history.each do |date, activities|
-      activities = activities.reverse_each.to_a
-      activities.each do |transaction|
+    transaction_history.reverse_each do |date, activities|
+      activities.reverse_each do |transaction|
         if transaction[0] == "deposit"
           transactions += "\n#{reformat_date(date)} || #{debit_amount(transaction[1])} || || #{balance_after_transaction(transaction[2])}"
         else transaction[0] == "credit"
@@ -45,4 +42,5 @@ class Statement
     end
     return "#{headers}" + "#{transactions}"
   end
+  
 end
