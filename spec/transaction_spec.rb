@@ -10,8 +10,12 @@ describe Transaction do
     expect(transaction.date).to eq(date_today)
     p transaction.date
     p transaction.type
+    p transaction.amount
   end
   it 'has a type i.e. deposit' do
     expect(transaction.type).to eq('test')
+  end
+  it 'has a monetary value associated with it' do
+    expect(transaction.amount).to eq(0.00)
   end
 end
