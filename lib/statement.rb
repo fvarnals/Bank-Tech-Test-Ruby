@@ -22,8 +22,10 @@ class Statement
     return "#{'%.2f' % amount}"
   end
 
-  def transaction_date(date)
-    return "#{date}"
+  def reformat_date(date)
+    date = date.to_s
+    reformatted_date = Date.parse(date).strftime("%d/%m/%Y")
+    return "#{reformatted_date}"
   end
 
   def print_statement(account)
@@ -33,9 +35,9 @@ class Statement
     transaction_history.each do |date, activities|
       activities.each do |transaction|
         if transaction[0] == "withdrawl"
-          transactions += "\n#{date} || #{transaction[1]} || || #{transaction[2]}"
+          transactions += "\n#{reformat_date(date)} || #{transaction[1]} || || #{transaction[2]}"
         else transaction[0] == "deposit"
-          transactions += "\n#{date} || || #{debit_amount(transaction[1])} || #{balance_after_transaction(transaction[2])}"
+          transactions += "\n#{reformat_date(date)} || || #{debit_amount(transaction[1])} || #{balance_after_transaction(transaction[2])}"
         end
       end
     end
