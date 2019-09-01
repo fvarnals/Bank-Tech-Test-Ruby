@@ -26,4 +26,5 @@ class Account
       @transaction_history[date.to_sym] = [["deposit", amount.to_f, @balance]]
     end
   end
+
 end

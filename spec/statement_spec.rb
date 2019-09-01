@@ -44,11 +44,10 @@ describe Statement do
     end
   end
   describe '#print_statement' do
-    it 'should return a list of all transactions under specified headers' do
-      statement.debit_amount(1000)
-      statement.debit_amount(2000)
-      statement.credit_amount(500)
-      expect(statement.print_statement).to eq("date || credit || debit || balance\n14/01/2012 || || 500.00 || 2500.00\n13/01/2012 || 2000.00 || || 3000.00\n10/01/2012 || 1000.00 || || 1000.00")
+    it 'should show details of deposit of 100.00 made on 14/01/2012 with date amount, and balance' do
+      account = double(:account)
+      allow(account).to receive(:transaction_history).and_return({"14/01/2012": [["deposit", 100.0, 100.0]]})
+      expect(statement.print_statement(account)).to eq("date || credit || debit || balance\n14/01/2012 || || 100.00 || 100.00")
     end
   end
 end
