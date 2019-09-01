@@ -9,21 +9,12 @@ class Account
     @transaction_history = []
   end
 
-  def withdraw(amount, date = Date.today.to_s)
-    @balance -= amount
+  def transaction(type, amount, date = Date.today.to_s)
+    update_balance(amount, type)
     amount = reformat_to_2dp_string(amount)
     balance = reformat_to_2dp_string(@balance)
     date = reformat_date(date)
-    transaction = Transaction.new('withdrawl', balance, amount, date)
-    transaction_history.push(transaction)
-  end
-
-  def deposit(amount, date = Date.today.to_s)
-    @balance += amount
-    amount = reformat_to_2dp_string(amount)
-    balance = reformat_to_2dp_string(@balance)
-    date = reformat_date(date)
-    transaction = Transaction.new('deposit', balance, amount, date)
+    transaction = Transaction.new(type, balance, amount, date)
     transaction_history.push(transaction)
   end
 
@@ -33,5 +24,15 @@ class Account
 
   def reformat_date(date)
     Date.parse(date).strftime("%d/%m/%Y")
+  end
+
+  def update_balance(amount, type)
+    if type == 'withdraw'
+      @balance -= amount
+    elsif type == 'deposit'
+      @balance += amount
+    else
+      raise 'Error: Transaction not recognised'
+    end
   end
 end
