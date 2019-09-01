@@ -32,12 +32,11 @@ class Statement
     transactions = ""
     transaction_history.each do |date, activities|
       activities.each do |transaction|
-        if transaction[0] == "Withdrawl"
+        if transaction[0] == "withdrawl"
           transactions += "\n#{date} || #{transaction[1]} || || #{transaction[2]}"
         else transaction[0] == "deposit"
           transactions += "\n#{date} || || #{debit_amount(transaction[1])} || #{balance_after_transaction(transaction[2])}"
         end
-      puts activities
       end
     end
     return "#{headers}" + "#{transactions}"
