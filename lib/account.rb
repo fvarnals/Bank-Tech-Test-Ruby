@@ -18,6 +18,8 @@ class Account
     transaction_history.push(transaction)
   end
 
+  private
+
   def reformat_to_2dp_string(data)
     "#{'%.2f' % data}"
   end
@@ -31,8 +33,6 @@ class Account
       @balance -= amount
     elsif type == 'deposit'
       @balance += amount
-    else
-      raise 'Error: Transaction not recognised'
     end
   end
 end

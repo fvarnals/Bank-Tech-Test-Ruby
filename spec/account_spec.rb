@@ -48,21 +48,6 @@ describe Account do
     it 'should be empty when no transactions have been made' do
       expect(account.transaction_history).to be_empty
     end
-    # it 'should show a withdrawl of 100 made today, with current balance, when this transaction is made' do
-    #   account = Account.new(100)
-    #   account.withdraw(100)
-    #   expect(account.transaction_history).to eq({"#{date_today}": [["withdrawl", "100.00", "0.00"]]})
-    # end
-    # it 'should show a withdrawl of 200 made today, with current balance, when this transaction is made' do
-    #   account = Account.new(300)
-    #   account.withdraw(200)
-    #   expect(account.transaction_history).to eq({"#{date_today}": [["withdrawl", "200.00", "100.00"]]})
-    # end
-    # it 'should show a deposit of 100 made today, with current balance, when this transaction is made' do
-    #   account = Account.new(100)
-    #   account.deposit(100)
-    #   expect(account.transaction_history).to eq({"#{date_today}": [["deposit", "100.00", "200.00"]]})
-    # end
     it 'should record dates in DD/MM/YYYY format when no date argument is given' do
       account.transaction('withdraw', 100)
       transaction = account.transaction_history[-1]
