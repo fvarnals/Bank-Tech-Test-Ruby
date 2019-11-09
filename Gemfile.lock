@@ -32,7 +32,7 @@ GEM
     case_transform (0.2)
       activesupport
     concurrent-ruby (1.1.5)
-    crass (1.0.4)
+    crass (1.0.5)
     datetime_helper (1.0.5)
       active_model_serializers
       activemodel (~> 4)
@@ -44,12 +44,12 @@ GEM
       concurrent-ruby (~> 1.0)
     json (2.2.0)
     jsonapi-renderer (0.2.2)
-    loofah (2.2.3)
+    loofah (2.3.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
-    nokogiri (1.10.4)
+    nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
     rack (1.6.11)
     rack-test (0.6.3)
